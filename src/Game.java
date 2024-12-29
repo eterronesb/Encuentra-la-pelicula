@@ -76,5 +76,33 @@ public class Game {
         System.out.println("Intentos restantes: " + attempts);
         System.out.println("Puntuación: " + score);
     }
+    //adivina una letra
+    public void guessLetter(char letter) {
+        if (guessedLetters.contains(letter)) {
+            System.out.println("Ya has adivinado esa letra.");
+            return:
+        }
+        guessedLetters.add(letter);
+
+        if (movieTitle.toLowerCase().indexOf(Character.toLowerCase(letter)) != -1) {
+            updateHiddenTitle(letter);
+            score += 10;
+            System.out.println("Has acertado.");
+        } else {
+            incorrectLetters.add(letter);
+            score -= 10;
+            System.out.println("Letra incorrecta.");
+        }
+
+        attempts--;
+    }
+    //Actualizar el titulo oculto
+    private void updateHiddenTitle(char letter) {
+        for (int i = 0; i < movieTitle.length(); i++) {
+            if (Character.toLowerCase(movieTitle.charAt(i)) == Character.toLowerCase(letter)) {
+                hiddenTitle.setCharAt(i, movieTitle.charAt(i));
+            }
+        }
+    }
 
 }
