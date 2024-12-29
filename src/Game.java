@@ -5,7 +5,7 @@ public class Game {
     private String movieTitle;
     private StringBuilder hiddenTitle;
     private Set<Character> guessedLetters;
-    private Set<Character> icorrectLetters;
+    private Set<Character> incorrectLetters;
     private int attempts;
     private int score;
     //usamos StringBuilder, para poder modificar el contenido del mismo objeto
@@ -13,7 +13,7 @@ public class Game {
         this.attempts = 10;
         this.score = 0;
         this.guessedLetters = new HashSet<>();
-        this.icorrectLetters = new HashSet<>();
+        this.incorrectLetters = new HashSet<>();
         this.hiddenTitle = new StringBuilder();
         this.movieTitle = loadRandomMovie();
         initializeHiddenTitle();
@@ -57,8 +57,24 @@ public class Game {
             System.out.println("Error al crear el archivo");
         }
     }
+    //Iniciaremos el titulo oculto con * para las letras
+    private void    initializeHiddenTitle() {
+        for (int i = 0; i < movieTitle.length(); i++) {
+            char c = movieTitle.charAt(i);
+            if (Character.isLetter(c)) {
+                hiddenTitle.append('*');
+            } else {
+                hiddenTitle.append(c);
+            }
+        }
+    }
 
-
-
+    //mostrar el estado actual del titulo
+    public void displayHiddenTitle() {
+        System.out.println("Película: " + hiddenTitle);
+        System.out.println("Letras incorrectas: " + incorrectLetters);
+        System.out.println("Intentos restantes: " + attempts);
+        System.out.println("Puntuación: " + score);
+    }
 
 }
