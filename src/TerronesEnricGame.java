@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 //creamos el objeto juego
-public class Game {
+public class TerronesEnricGame {
     private String movieTitle;
     private StringBuilder hiddenTitle;
     private Set<Character> guessedLetters;
@@ -10,7 +10,7 @@ public class Game {
     private int attempts;
     private int score;
     //usamos StringBuilder, para poder modificar el contenido del mismo objeto
-    public Game() {
+    public TerronesEnricGame() {
         this.attempts = 10;
         this.score = 0;
         this.guessedLetters = new HashSet<>();

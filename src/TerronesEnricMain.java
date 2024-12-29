@@ -3,10 +3,10 @@ import java.io.ObjectInputStream;
 import java.util.List;
 import java.util.Scanner;
 
-public class Main {
+public class TerronesEnricMain {
     public static void main(String[] args) {
         //Crear un nuevo juego
-        Game game = new Game();
+        TerronesEnricGame game = new TerronesEnricGame();
         Scanner scanner = new Scanner(System.in);
 
         //Comenzamos el juego
@@ -42,14 +42,14 @@ public class Main {
         System.out.println("Juego terminado. Su puntuacion es: " + game.getScore());
         System.out.println("Introduce tu Nombre: ");
         String nickname = scanner.nextLine();
-        Player player = new Player(nickname, game.getScore());
+        TerronesEnricPlayer player = new TerronesEnricPlayer(nickname, game.getScore());
         player.saveRanking();
 
         //mostrar ranking
         System.out.println("Ranking: ");
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("ranking.dat"))) {
-            List<Player> ranking = (List<Player>) ois.readObject();
-            for (Player p : ranking) {
+            List<TerronesEnricPlayer> ranking = (List<TerronesEnricPlayer>) ois.readObject();
+            for (TerronesEnricPlayer p : ranking) {
                 System.out.println(p.getNickname() + " - " + p.getScore());
             }
         }catch (Exception e) {
