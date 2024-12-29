@@ -1,3 +1,6 @@
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -35,10 +38,22 @@ public class Main {
                     System.out.println("Opcion no valida.");
             }
         }
+        //Mostrar el resultado final
+        System.out.println("Juego terminado. Su puntuacion es: " + game.getScore());
+        System.out.println("Introduce tu Nombre: ");
+        String nickname = scanner.nextLine();
+        Player player = new Player(nickname, game.getScore());
+        player.saveRanking();
 
+        //mostrar ranking
+        System.out.println("Ranking: ");
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("ranking.dat"))) {
+            List<Player> ranking = (List<Player>) ois.readObject();
+            for (Player p : ranking) {
+                System.out.println(p.getNickname() + " - " + p.getScore());
+            }
+        }catch (Exception e) {
+            System.out.println("No hay ranking disponible.");
+        }
     }
-
-
-
-
 }
