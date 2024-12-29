@@ -80,7 +80,7 @@ public class Game {
     public void guessLetter(char letter) {
         if (guessedLetters.contains(letter)) {
             System.out.println("Ya has adivinado esa letra.");
-            return:
+            return;
         }
         guessedLetters.add(letter);
 
@@ -96,7 +96,7 @@ public class Game {
 
         attempts--;
     }
-    //Actualizar el titulo oculto
+    //Actualizar el titulo oculto con las letras correctas
     private void updateHiddenTitle(char letter) {
         for (int i = 0; i < movieTitle.length(); i++) {
             if (Character.toLowerCase(movieTitle.charAt(i)) == Character.toLowerCase(letter)) {
@@ -104,5 +104,12 @@ public class Game {
             }
         }
     }
-
+    //Comprobamos si el juego a terminado
+    public boolean isGameOver() {
+        return attempts <= 0 || hiddenTitle.toString().equals(movieTitle);
+    }
+    //Obtenemos el puntuaje final
+    public int getScore() {
+        return score;
+    }
 }
