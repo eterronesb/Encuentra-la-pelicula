@@ -19,7 +19,7 @@ public class Player {
 
     public void saveRanking() {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("ranking.dat"))) {
-            List<Player> ranking = (List<Player>) ois.readObject();
+            List<Player> ranking = ((List<Player>) ois.readObject());
             ranking.add(this);
             ranking.sort((p1, p2) -> Integer.compare(p2.getScore(), p1.getScore()));
         //Mantendremos solo los 5 mejores

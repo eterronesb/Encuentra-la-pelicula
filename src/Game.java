@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 //creamos el objeto juego
 public class Game {
     private String movieTitle;
@@ -31,7 +32,7 @@ public class Game {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("movies.dat"))) {
             String[] movies = (String[]) ois.readObject();
             Random rand = new Random();
-            return movies[rand.nextInt(movies.length)];
+            return movies[ThreadLocalRandom.current().nextInt(movies.length)];
         } catch (Exception e) {
             System.out.println("No se pudo cargar las peliculas, verifique si existe el archivo");
             return "";
