@@ -33,11 +33,30 @@ public class Game {
             Random rand = new Random();
             return movies[rand.nextInt(movies.length)];
         } catch (Exception e) {
-            System.out.println("No se pudo cargar las peliculas, verifique si existe el archivo"+ movies.dat);
+            System.out.println("No se pudo cargar las peliculas, verifique si existe el archivo");
             return "";
         }
     }
 //creamos el archivo movies.dat con una lista de peliculas
+    private  void   createMoviesFile() {
+        String[] movies = {
+                "Star wars",
+                "Señor de los anillos",
+                "El Padrino",
+                "Pulp Fiction",
+                "Gladiator",
+                "Avatar",
+                "Pesadilla antes de navidad",
+                "Harry Potter"
+        };
+
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("movies.dat"))) {
+            oos.writeObject(movies);
+            System.out.println("Se ha creado correctamente");
+        } catch (Exception e) {
+            System.out.println("Error al crear el archivo");
+        }
+    }
 
 
 
