@@ -1,11 +1,11 @@
 import java.io.*;
 import java.util.*;
 
-public class TerronesEnricPlayer {
+public class Player {
     private String nickname;
     private int score;
 
-    public TerronesEnricPlayer(String nickname, int score) {
+    public Player(String nickname, int score) {
         this.nickname = nickname;
         this.score = score;
     }
@@ -19,7 +19,7 @@ public class TerronesEnricPlayer {
 
     public void saveRanking() {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("ranking.dat"))) {
-            List<TerronesEnricPlayer> ranking = ((List<TerronesEnricPlayer>) ois.readObject());
+            List<Player> ranking = ((List<Player>) ois.readObject());
             ranking.add(this);
             ranking.sort((p1, p2) -> Integer.compare(p2.getScore(), p1.getScore()));
         //Mantendremos solo los 5 mejores
