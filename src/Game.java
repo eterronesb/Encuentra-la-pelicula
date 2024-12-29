@@ -96,6 +96,17 @@ public class Game {
 
         attempts--;
     }
+    //Adivinar el titulo completo
+    public void guessMovieTitle(String title){
+        if (title.equalsIgnoreCase(movieTitle)) {
+            score += 20;
+            System.out.println("Lo conseguiste, el titulo es: " + movieTitle);
+        }else {
+            score -= 20;
+            System.out.println("Perdiste, el titulo era: " + movieTitle);
+        }
+        attempts = 0;
+    }
     //Actualizar el titulo oculto con las letras correctas
     private void updateHiddenTitle(char letter) {
         for (int i = 0; i < movieTitle.length(); i++) {
